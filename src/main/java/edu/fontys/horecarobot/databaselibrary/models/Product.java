@@ -1,5 +1,7 @@
 package edu.fontys.horecarobot.databaselibrary.models;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -8,26 +10,33 @@ import java.util.UUID;
 public class Product {
 
     @Id
-    @GeneratedValue
     @Column(updatable = false, nullable = false)
-    private UUID id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+        name = "UUID",
+        strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    private String id;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String name;
 
     @Column
     private String image;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private double price;
 
-    @Column(name = "discount-price")
+    @Column(name = "discount_price")
     private double discountPrice;
 
     @Column
     private String description;
 
-    @Column(name = "contains-alcohol")
+    @Column(name = "contains_alcohol")
     private boolean containsAlcohol;
 
+    public String getId() {
+        return id;
+    }
 }
