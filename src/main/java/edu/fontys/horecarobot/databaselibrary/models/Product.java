@@ -5,7 +5,6 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "products")
 public class Product {
 
     @Id
@@ -42,6 +41,10 @@ public class Product {
         this.discountPrice = discountPrice;
         this.description = description;
         this.containsAlcohol = containsAlcohol;
+    }
+
+    public Product() {
+
     }
 
     public String getId() {

@@ -9,8 +9,8 @@ public class Main {
         session.beginTransaction();
 
         //Add new Employee object
-        Product product = new Product();
-        session.save(product);
+        //Product product = new Product();
+        //session.save(product);
 
         session.getTransaction().commit();
         HibernateUtil.shutdown();
