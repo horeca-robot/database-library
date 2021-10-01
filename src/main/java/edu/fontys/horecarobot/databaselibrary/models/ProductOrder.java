@@ -15,12 +15,6 @@ public class ProductOrder {
     )
     private String id;
 
-    @ManyToOne
-    private Product product;
-
-    @ManyToOne
-    private Order order;
-
     @Column
     private boolean delivered;
 
@@ -39,22 +33,6 @@ public class ProductOrder {
         this.id = id;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
     public boolean isDelivered() {
         return delivered;
     }
@@ -71,10 +49,4 @@ public class ProductOrder {
         this.deliverLater = deliverLater;
     }
 
-    public ProductOrder(Product product, Order order) {
-        this.product = product;
-        this.order = order;
-        this.delivered = false;
-        this.deliverLater = false;
-    }
 }

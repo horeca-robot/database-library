@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### hibernate env file ###
+/src/main/resources/hibernate.cfg.xml

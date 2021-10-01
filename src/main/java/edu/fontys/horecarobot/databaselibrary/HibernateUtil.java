@@ -2,7 +2,10 @@ package edu.fontys.horecarobot.databaselibrary;
 
 import java.io.File;
 
+import edu.fontys.horecarobot.databaselibrary.models.Order;
 import edu.fontys.horecarobot.databaselibrary.models.Product;
+import edu.fontys.horecarobot.databaselibrary.models.ProductOrder;
+import edu.fontys.horecarobot.databaselibrary.models.Table;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -15,7 +18,10 @@ public class HibernateUtil {
             Configuration config = new Configuration();
 
             config.configure(new File("src/main/resources/hibernate.cfg.xml"));
+            config.addAnnotatedClass(Order.class);
             config.addAnnotatedClass(Product.class);
+            config.addAnnotatedClass(ProductOrder.class);
+            config.addAnnotatedClass(Table.class);
 
             return config.buildSessionFactory();
         }
