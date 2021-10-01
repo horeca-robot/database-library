@@ -2,10 +2,13 @@ package edu.fontys.horecarobot.databaselibrary;
 
 import java.io.File;
 
+import edu.fontys.horecarobot.databaselibrary.models.Category;
 import edu.fontys.horecarobot.databaselibrary.models.Order;
 import edu.fontys.horecarobot.databaselibrary.models.Product;
 import edu.fontys.horecarobot.databaselibrary.models.ProductOrder;
 import edu.fontys.horecarobot.databaselibrary.models.Table;
+import edu.fontys.horecarobot.databaselibrary.models.Tag;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -22,6 +25,8 @@ public class HibernateUtil {
             config.addAnnotatedClass(Product.class);
             config.addAnnotatedClass(ProductOrder.class);
             config.addAnnotatedClass(Table.class);
+            config.addAnnotatedClass(Category.class);
+            config.addAnnotatedClass(Tag.class);
 
             return config.buildSessionFactory();
         }

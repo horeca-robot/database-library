@@ -2,9 +2,22 @@ package edu.fontys.horecarobot.databaselibrary.models;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
+import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 
 @Entity
+@Table(name = "product")
 public class Product {
 
     @Id
@@ -16,7 +29,7 @@ public class Product {
     )
     private String id;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private String name;
 
     @Column
@@ -34,25 +47,28 @@ public class Product {
     @Column(name = "contains_alcohol")
     private boolean containsAlcohol;
 
-    public Product(String name, String image, double price, double discountPrice, String description, boolean containsAlcohol) {
+    @ElementCollection
+    @ManyToMany(cascade = CascadeType.ALL)
+    @OrderColumn(name = "id")
+    @JoinTable(
+        name = "products_tags",
+        joinColumns = { @JoinColumn(table = "tags", referencedColumnName = "id", name = "tag_id") },
+        inverseJoinColumns = { @JoinColumn(table = "products", referencedColumnName = "id", name = "product_id") }
+    )
+    private Tag tags[];
+
+    public Product(String name, String image, double price, double discountPrice, String description, boolean containsAlcohol, Tag tags[]) {
         this.name = name;
         this.image = image;
         this.price = price;
         this.discountPrice = discountPrice;
         this.description = description;
         this.containsAlcohol = containsAlcohol;
-    }
-
-    public Product() {
-
+        this.tags = tags;
     }
 
     public String getId() {
         return this.id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -102,5 +118,26 @@ public class Product {
     public void setContainsAlcohol(boolean containsAlcohol) {
         this.containsAlcohol = containsAlcohol;
     }
-    
+
+    public Tag[] getTags() {
+        return this.tags;
+    }
+
+    public void setTags(Tag tags[]) {
+        this.tags = tags;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", name='" + getName() + "'" +
+            ", image='" + getImage() + "'" +
+            ", price='" + getPrice() + "'" +
+            ", discountPrice='" + getDiscountPrice() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", containsAlcohol='" + getContainsAlcohol() + "'" +
+            ", tags[]='" + getTags() + "'" +
+            "}";
+    }
 }
