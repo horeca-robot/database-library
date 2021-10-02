@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name = "Orders")
+@Table(name = "orders")
 public class Order {
     @Id
     @Column(updatable = false, nullable = false)
@@ -28,4 +28,18 @@ public class Order {
     @Column
     private Date created_at;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "table_id", nullable = false)
+    private RestaurantTable table;
+
+
+    public Order(){
+
+    }
+
+    public Order(float subTotal, PaymentStatus paymentStatus) {
+        this.subTotal = subTotal;
+        this.paymentStatus = paymentStatus;
+        this.created_at = new Date();
+    }
 }

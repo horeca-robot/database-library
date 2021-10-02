@@ -1,18 +1,11 @@
 package edu.fontys.horecarobot.databaselibrary.models;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OrderColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "categories")
@@ -32,8 +25,7 @@ public class Category {
     
     @Column
     private String image;
-    
-    @ElementCollection
+
     @ManyToMany(cascade = CascadeType.ALL)
     @OrderColumn(name = "id")
     @JoinTable(
@@ -42,12 +34,11 @@ public class Category {
         inverseJoinColumns = { @JoinColumn(table = "category", referencedColumnName = "id", name = "category_id") }
     )
     @Column(name = "parent_category")
-    private Category[] parentCategory;
+    private List<Category> parentCategory = new ArrayList<>();
     
     @Column
     private boolean visible;
 
-    @ElementCollection
     @ManyToMany(cascade = CascadeType.ALL)
     @OrderColumn(name = "id")
     @JoinTable(
@@ -55,15 +46,19 @@ public class Category {
         joinColumns = { @JoinColumn(table = "products", referencedColumnName = "id", name = "product_id") },
         inverseJoinColumns = { @JoinColumn(table = "category", referencedColumnName = "id", name = "category_id") }
     )
-    private Product[] products;
+    private List<Product> products = new ArrayList<>();
 
 
-    public Category(String name, String image, Category[] parentCategory, boolean visible, Product[] products) {
+    public Category(String name, String image, List<Category> parentCategory, boolean visible, List<Product> products) {
         this.name = name;
         this.image = image;
         this.parentCategory = parentCategory;
         this.visible = visible;
         this.products = products;
+    }
+
+    public Category() {
+
     }
 
     public String getId() {
@@ -86,11 +81,11 @@ public class Category {
         this.image = image;
     }
 
-    public Category[] getParentCategory() {
+    public List<Category> getParentCategory() {
         return this.parentCategory;
     }
 
-    public void setParentCategory(Category[] parentCategory) {
+    public void setParentCategory(List<Category> parentCategory) {
         this.parentCategory = parentCategory;
     }
 
@@ -106,11 +101,11 @@ public class Category {
         this.visible = visible;
     }
 
-    public Product[] getProducts() {
+    public List<Product> getProducts() {
         return this.products;
     }
 
-    public void setProducts(Product[] products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 

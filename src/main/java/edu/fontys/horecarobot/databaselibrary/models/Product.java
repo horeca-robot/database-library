@@ -2,22 +2,12 @@ package edu.fontys.horecarobot.databaselibrary.models;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderColumn;
-import javax.persistence.Table;
-import javax.persistence.JoinColumn;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "product")
+@Table(name = "products")
 public class Product {
 
     @Id
@@ -41,13 +31,12 @@ public class Product {
     @Column(name = "discount_price")
     private double discountPrice;
 
-    @Column
+    @Column(columnDefinition="TEXT")
     private String description;
 
     @Column(name = "contains_alcohol")
     private boolean containsAlcohol;
 
-    @ElementCollection
     @ManyToMany(cascade = CascadeType.ALL)
     @OrderColumn(name = "id")
     @JoinTable(
@@ -55,9 +44,9 @@ public class Product {
         joinColumns = { @JoinColumn(table = "tags", referencedColumnName = "id", name = "tag_id") },
         inverseJoinColumns = { @JoinColumn(table = "products", referencedColumnName = "id", name = "product_id") }
     )
-    private Tag tags[];
+    private List<Tag> tags = new ArrayList<>();
 
-    public Product(String name, String image, double price, double discountPrice, String description, boolean containsAlcohol, Tag tags[]) {
+    public Product(String name, String image, double price, double discountPrice, String description, boolean containsAlcohol, List<Tag> tags) {
         this.name = name;
         this.image = image;
         this.price = price;
@@ -65,6 +54,19 @@ public class Product {
         this.description = description;
         this.containsAlcohol = containsAlcohol;
         this.tags = tags;
+    }
+
+    public Product(String name, String image, double price, double discountPrice, String description, boolean containsAlcohol) {
+        this.name = name;
+        this.image = image;
+        this.price = price;
+        this.discountPrice = discountPrice;
+        this.description = description;
+        this.containsAlcohol = containsAlcohol;
+    }
+
+    public Product() {
+
     }
 
     public String getId() {
@@ -119,11 +121,11 @@ public class Product {
         this.containsAlcohol = containsAlcohol;
     }
 
-    public Tag[] getTags() {
+    public List<Tag> getTags() {
         return this.tags;
     }
 
-    public void setTags(Tag tags[]) {
+    public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
 
