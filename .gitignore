@@ -38,3 +38,5 @@ out/
 
 ### hibernate env file ###
 /src/main/resources/hibernate.cfg.xml
+
+/target
