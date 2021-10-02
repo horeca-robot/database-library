@@ -35,8 +35,8 @@ public class ProductOrder {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "productsOrders_products_byProducts",
-            joinColumns = { @JoinColumn(table = "products", referencedColumnName = "id", name = "product_id") },
-            inverseJoinColumns = { @JoinColumn(table = "productOrders", referencedColumnName = "id", name = "productOrder_id") }
+            joinColumns = { @JoinColumn(table = "productOrders", referencedColumnName = "id", name = "productOrder_id") },
+            inverseJoinColumns = { @JoinColumn(table = "products", referencedColumnName = "id", name = "product_id") }
     )
     private List<Product> byProducts = new ArrayList<>();
 
