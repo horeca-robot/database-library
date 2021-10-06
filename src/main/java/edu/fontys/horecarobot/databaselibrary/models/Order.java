@@ -28,13 +28,9 @@ public class Order {
     @Column
     private Date created_at;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @OrderColumn(name = "id")
-    @JoinTable(
-        name = "orders_tables",
-        joinColumns = { @JoinColumn(table = "tables", referencedColumnName = "id", name = "table_id") },
-        inverseJoinColumns = { @JoinColumn(table = "orders", referencedColumnName = "id", name = "order_id") }
-    )
+    @JoinColumn(name = "table_id")
     private RestaurantTable table;
 
     public Order(){
@@ -84,5 +80,16 @@ public class Order {
 
     public void setTable(RestaurantTable table) {
         this.table = table;
-    }    
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", subTotal='" + getSubTotal() + "'" +
+            ", paymentStatus='" + getPaymentStatus() + "'" +
+            ", created_at='" + getCreated_at() + "'" +
+            ", table='" + getTable() + "'" +
+            "}";
+    }
 }
