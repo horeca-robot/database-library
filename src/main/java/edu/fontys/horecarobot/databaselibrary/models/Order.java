@@ -29,9 +29,13 @@ public class Order {
     private Date created_at;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "table_id", nullable = false)
+    @OrderColumn(name = "id")
+    @JoinTable(
+        name = "orders_tables",
+        joinColumns = { @JoinColumn(table = "tables", referencedColumnName = "id", name = "table_id") },
+        inverseJoinColumns = { @JoinColumn(table = "orders", referencedColumnName = "id", name = "order_id") }
+    )
     private RestaurantTable table;
-
 
     public Order(){
 
@@ -42,4 +46,43 @@ public class Order {
         this.paymentStatus = paymentStatus;
         this.created_at = new Date();
     }
+
+    public Order(float subTotal, PaymentStatus paymentStatus, RestaurantTable table) {
+        this.subTotal = subTotal;
+        this.paymentStatus = paymentStatus;
+        this.created_at = new Date();
+        this.table = table;
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public float getSubTotal() {
+        return this.subTotal;
+    }
+
+    public void setSubTotal(float subTotal) {
+        this.subTotal = subTotal;
+    }
+
+    public PaymentStatus getPaymentStatus() {
+        return this.paymentStatus;
+    }
+
+    public void setPaymentStatus(PaymentStatus paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    public Date getCreated_at() {
+        return this.created_at;
+    }
+
+    public RestaurantTable getTable() {
+        return this.table;
+    }
+
+    public void setTable(RestaurantTable table) {
+        this.table = table;
+    }    
 }
