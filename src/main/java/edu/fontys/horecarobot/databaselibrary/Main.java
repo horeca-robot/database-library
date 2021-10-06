@@ -25,34 +25,34 @@ public class Main {
         System.out.println(tag3);
         System.out.println("------");
 
-        Tag tags[] = {tag1, tag2, tag3};
-
-        Product testProd1 = new Product("name1", "image", 12.00, 12.00, "description", false, tags);
-        Product testProd2 = new Product("name2", "image", 12.00, 12.00, "description", false, null);
-        Product testProd3 = new Product("name3", "image", 12.00, 12.00, "description", false, null);
-        Product testProd4 = new Product("name4", "image", 12.00, 12.00, "description", false, null);
-
-        session.save(testProd1);
-        session.save(testProd2);
-        session.save(testProd3);
-        session.save(testProd4);
-
-        Product products[] = {testProd1, testProd2, testProd3, testProd4};
+//        Tag tags[] = {tag1, tag2, tag3};
+//
+//        Product testProd1 = new Product("name1", "image", 12.00, 12.00, "description", false, tags);
+//        Product testProd2 = new Product("name2", "image", 12.00, 12.00, "description", false, null);
+//        Product testProd3 = new Product("name3", "image", 12.00, 12.00, "description", false, null);
+//        Product testProd4 = new Product("name4", "image", 12.00, 12.00, "description", false, null);
+//
+//        session.save(testProd1);
+//        session.save(testProd2);
+//        session.save(testProd3);
+//        session.save(testProd4);
+//
+//        Product products[] = {testProd1, testProd2, testProd3, testProd4};
 
         Category subCat = new Category("sub-test-cat-1", "image-b64", null, true, null);
         session.save(subCat);
-        Category parentCats[] = { subCat };
-        
-        Category cat = new Category("test-cat-1", "image-b64", parentCats, true, products);
+//        Category List<parentCats> = { subCat };
+//
+//        Category cat = new Category("test-cat-1", "image-b64", parentCats, true, products);
 
         //Add new Employee object
         //Product product = new Product();
-        session.save(cat);
+//        session.save(cat);
 
         session.getTransaction().commit();
         HibernateUtil.shutdown();
     
         System.out.println("------");
-        System.out.println(cat);
+//        System.out.println(cat);
     }
 }

@@ -1,12 +1,11 @@
 package edu.fontys.horecarobot.databaselibrary.models;
 
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 
 @Entity
-@javax.persistence.Table(name = "Tables")
-public class Table {
+@Table(name = "tables")
+public class RestaurantTable {
     @Id
     @Column(updatable = false, nullable = false)
     @GeneratedValue(generator = "UUID")
@@ -25,13 +24,13 @@ public class Table {
     @Column
     private int yAxis;
 
-    public Table(int tableNumber, int x, int y) {
+    public RestaurantTable(int tableNumber, int x, int y) {
         this.tableNumber = tableNumber;
         this.xAxis = x;
         this.yAxis = y;
     }
 
-    public Table() {
+    public RestaurantTable() {
 
     }
 

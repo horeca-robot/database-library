@@ -6,7 +6,7 @@ import edu.fontys.horecarobot.databaselibrary.models.Category;
 import edu.fontys.horecarobot.databaselibrary.models.Order;
 import edu.fontys.horecarobot.databaselibrary.models.Product;
 import edu.fontys.horecarobot.databaselibrary.models.ProductOrder;
-import edu.fontys.horecarobot.databaselibrary.models.Table;
+import edu.fontys.horecarobot.databaselibrary.models.RestaurantTable;
 import edu.fontys.horecarobot.databaselibrary.models.Tag;
 
 import org.hibernate.SessionFactory;
@@ -24,7 +24,7 @@ public class HibernateUtil {
             config.addAnnotatedClass(Order.class);
             config.addAnnotatedClass(Product.class);
             config.addAnnotatedClass(ProductOrder.class);
-            config.addAnnotatedClass(Table.class);
+            config.addAnnotatedClass(RestaurantTable.class);
             config.addAnnotatedClass(Category.class);
             config.addAnnotatedClass(Tag.class);
 
