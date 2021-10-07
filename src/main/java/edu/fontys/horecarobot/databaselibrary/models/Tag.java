@@ -4,6 +4,10 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 @Entity
 @Table(name = "tags")
 public class Tag {
@@ -15,16 +19,19 @@ public class Tag {
         name = "UUID",
         strategy = "org.hibernate.id.UUIDGenerator"
     )
-    private String id;
+    private UUID id;
 
     @Column(nullable = false)
     private String name;
+
+    @ManyToMany(mappedBy = "tags")
+    private List<Product> products = new ArrayList<>();
 
     public Tag(String name) {
         this.name = name;
     }
 
-    public String getId() {
+    public UUID getId() {
         return this.id;
     }
 

@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "products")
@@ -17,7 +18,7 @@ public class Product {
         name = "UUID",
         strategy = "org.hibernate.id.UUIDGenerator"
     )
-    private String id;
+    private UUID id;
 
     @Column(nullable = false)
     private String name;
@@ -69,7 +70,7 @@ public class Product {
 
     }
 
-    public String getId() {
+    public UUID getId() {
         return this.id;
     }
 

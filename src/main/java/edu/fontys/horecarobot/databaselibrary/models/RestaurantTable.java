@@ -2,6 +2,7 @@ package edu.fontys.horecarobot.databaselibrary.models;
 
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tables")
@@ -13,7 +14,7 @@ public class RestaurantTable {
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
-    private String id;
+    private UUID id;
 
     @Column
     private int tableNumber;
@@ -34,12 +35,8 @@ public class RestaurantTable {
 
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public int getTableNumber() {

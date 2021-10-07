@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "categories")
@@ -18,7 +19,7 @@ public class Category {
         name = "UUID",
         strategy = "org.hibernate.id.UUIDGenerator"
     )
-    private String id;
+    private UUID id;
     
     @Column(nullable = true)
     private String name;
@@ -61,7 +62,7 @@ public class Category {
 
     }
 
-    public String getId() {
+    public UUID getId() {
         return this.id;
     }
 

@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name = "orders")
@@ -17,7 +18,7 @@ public class Order {
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
-    private String id;
+    private UUID id;
 
     @Column
     private float subTotal;
@@ -50,7 +51,7 @@ public class Order {
         this.table = table;
     }
 
-    public String getId() {
+    public UUID getId() {
         return this.id;
     }
 
