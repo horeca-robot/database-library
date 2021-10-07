@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name = "orders")
@@ -17,7 +18,7 @@ public class Order {
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
-    private String id;
+    private UUID id;
 
     @Column
     private float subTotal;
@@ -28,10 +29,10 @@ public class Order {
     @Column
     private Date created_at;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "table_id", nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OrderColumn(name = "id")
+    @JoinColumn(name = "table_id")
     private RestaurantTable table;
-
 
     public Order(){
 
@@ -41,5 +42,55 @@ public class Order {
         this.subTotal = subTotal;
         this.paymentStatus = paymentStatus;
         this.created_at = new Date();
+    }
+
+    public Order(float subTotal, PaymentStatus paymentStatus, RestaurantTable table) {
+        this.subTotal = subTotal;
+        this.paymentStatus = paymentStatus;
+        this.created_at = new Date();
+        this.table = table;
+    }
+
+    public UUID getId() {
+        return this.id;
+    }
+
+    public float getSubTotal() {
+        return this.subTotal;
+    }
+
+    public void setSubTotal(float subTotal) {
+        this.subTotal = subTotal;
+    }
+
+    public PaymentStatus getPaymentStatus() {
+        return this.paymentStatus;
+    }
+
+    public void setPaymentStatus(PaymentStatus paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    public Date getCreated_at() {
+        return this.created_at;
+    }
+
+    public RestaurantTable getTable() {
+        return this.table;
+    }
+
+    public void setTable(RestaurantTable table) {
+        this.table = table;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", subTotal='" + getSubTotal() + "'" +
+            ", paymentStatus='" + getPaymentStatus() + "'" +
+            ", created_at='" + getCreated_at() + "'" +
+            ", table='" + getTable() + "'" +
+            "}";
     }
 }
