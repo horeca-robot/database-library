@@ -1,6 +1,8 @@
 package edu.fontys.horecarobot.databaselibrary.models;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -8,12 +10,13 @@ import java.util.UUID;
 @Table(name = "tables")
 public class RestaurantTable {
     @Id
-    @Column(updatable = false, nullable = false)
+    @Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
+    @Type(type = "uuid-char")
     private UUID id;
 
     @Column
