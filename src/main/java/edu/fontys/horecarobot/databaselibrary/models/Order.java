@@ -6,10 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -19,13 +21,14 @@ import java.util.Date;
 @Table(name = "orders")
 public class Order {
     @Id
-    @Column(updatable = false, nullable = false)
+    @Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
-    private String id;
+    @Type(type = "uuid-char")
+    private UUID id;
 
     @Column
     private float subTotal;
@@ -36,13 +39,9 @@ public class Order {
     @Column
     private Date created_at;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @OrderColumn(name = "id")
-    @JoinTable(
-        name = "orders_tables",
-        joinColumns = { @JoinColumn(table = "tables", referencedColumnName = "id", name = "table_id") },
-        inverseJoinColumns = { @JoinColumn(table = "orders", referencedColumnName = "id", name = "order_id") }
-    )
+    @JoinColumn(name = "table_id")
     private RestaurantTable table;
 
 }
