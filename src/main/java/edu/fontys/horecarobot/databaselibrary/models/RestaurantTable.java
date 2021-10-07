@@ -1,8 +1,16 @@
 package edu.fontys.horecarobot.databaselibrary.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Entity
 @Table(name = "tables")
 public class RestaurantTable {
@@ -24,45 +32,4 @@ public class RestaurantTable {
     @Column
     private int yAxis;
 
-    public RestaurantTable(int tableNumber, int x, int y) {
-        this.tableNumber = tableNumber;
-        this.xAxis = x;
-        this.yAxis = y;
-    }
-
-    public RestaurantTable() {
-
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public int getTableNumber() {
-        return tableNumber;
-    }
-
-    public void setTableNumber(int tableNumber) {
-        this.tableNumber = tableNumber;
-    }
-
-    public int getXAxis() {
-        return xAxis;
-    }
-
-    public void setXAxis(int x) {
-        this.xAxis = x;
-    }
-
-    public int getYAxis() {
-        return yAxis;
-    }
-
-    public void setYAxis(int y) {
-        this.yAxis = y;
-    }
 }

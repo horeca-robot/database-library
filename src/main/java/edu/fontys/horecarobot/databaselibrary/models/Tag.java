@@ -2,8 +2,16 @@ package edu.fontys.horecarobot.databaselibrary.models;
 
 import javax.persistence.*;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Entity
 @Table(name = "tags")
 public class Tag {
@@ -20,27 +28,4 @@ public class Tag {
     @Column(nullable = false)
     private String name;
 
-    public Tag(String name) {
-        this.name = name;
-    }
-
-    public String getId() {
-        return this.id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", name='" + getName() + "'" +
-            "}";
-    }
 }

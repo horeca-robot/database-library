@@ -2,11 +2,19 @@ package edu.fontys.horecarobot.databaselibrary.models;
 
 import javax.persistence.*;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Entity
 @Table(name = "categories")
 public class Category {
@@ -48,76 +56,4 @@ public class Category {
     )
     private List<Product> products = new ArrayList<>();
 
-
-    public Category(String name, String image, List<Category> parentCategory, boolean visible, List<Product> products) {
-        this.name = name;
-        this.image = image;
-        this.parentCategory = parentCategory;
-        this.visible = visible;
-        this.products = products;
-    }
-
-    public Category() {
-
-    }
-
-    public String getId() {
-        return this.id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getImage() {
-        return this.image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public List<Category> getParentCategory() {
-        return this.parentCategory;
-    }
-
-    public void setParentCategory(List<Category> parentCategory) {
-        this.parentCategory = parentCategory;
-    }
-
-    public boolean isVisible() {
-        return this.visible;
-    }
-
-    public boolean getVisible() {
-        return this.visible;
-    }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
-
-    public List<Product> getProducts() {
-        return this.products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
-    @Override
-    public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", name='" + getName() + "'" +
-            ", image='" + getImage() + "'" +
-            ", parentCategory='" + getParentCategory() + "'" +
-            ", visible='" + isVisible() + "'" +
-            ", products='" + getProducts() + "'" +
-            "}";
-    }
 }

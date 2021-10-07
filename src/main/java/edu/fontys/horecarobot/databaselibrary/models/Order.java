@@ -1,12 +1,20 @@
 package edu.fontys.horecarobot.databaselibrary.models;
 
 import edu.fontys.horecarobot.databaselibrary.enums.PaymentStatus;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.persistence.Table;
 import java.util.Date;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Entity
 @Table(name = "orders")
 public class Order {
@@ -37,52 +45,4 @@ public class Order {
     )
     private RestaurantTable table;
 
-    public Order(){
-
-    }
-
-    public Order(float subTotal, PaymentStatus paymentStatus) {
-        this.subTotal = subTotal;
-        this.paymentStatus = paymentStatus;
-        this.created_at = new Date();
-    }
-
-    public Order(float subTotal, PaymentStatus paymentStatus, RestaurantTable table) {
-        this.subTotal = subTotal;
-        this.paymentStatus = paymentStatus;
-        this.created_at = new Date();
-        this.table = table;
-    }
-
-    public String getId() {
-        return this.id;
-    }
-
-    public float getSubTotal() {
-        return this.subTotal;
-    }
-
-    public void setSubTotal(float subTotal) {
-        this.subTotal = subTotal;
-    }
-
-    public PaymentStatus getPaymentStatus() {
-        return this.paymentStatus;
-    }
-
-    public void setPaymentStatus(PaymentStatus paymentStatus) {
-        this.paymentStatus = paymentStatus;
-    }
-
-    public Date getCreated_at() {
-        return this.created_at;
-    }
-
-    public RestaurantTable getTable() {
-        return this.table;
-    }
-
-    public void setTable(RestaurantTable table) {
-        this.table = table;
-    }    
 }
