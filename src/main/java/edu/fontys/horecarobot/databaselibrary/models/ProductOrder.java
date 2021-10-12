@@ -17,7 +17,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "productOrders")
+@Table(name = "product_order")
 public class ProductOrder {
     @Id
     @Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")

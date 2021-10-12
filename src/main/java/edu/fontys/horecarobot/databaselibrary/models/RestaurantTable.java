@@ -15,7 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "tables")
+@Table(name = "table")
 public class RestaurantTable {
     @Id
     @Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
