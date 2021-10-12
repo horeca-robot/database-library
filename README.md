@@ -1,5 +1,5 @@
 # How to add this library to your project
-Step 1. Add the JitPack repository to your build file
+**Step 1. Add the JitPack repository to your build file**
 ```xml
 <repositories>
     <repository>
@@ -8,7 +8,7 @@ Step 1. Add the JitPack repository to your build file
     </repository>
 </repositories>
 ```
-Step 2. Add the dependency
+**Step 2. Add the dependency**
 ```xml
 <dependency>
     <groupId>com.github.horeca-robot</groupId>
@@ -16,7 +16,7 @@ Step 2. Add the dependency
     <version>1.4</version>
 </dependency>
 ```
-Step 3. Add Entity/Component scans to your project to make the models/repositories visible for Spring
+**Step 3. Add Entity/Component scans to your project to make the models/repositories visible for Spring**
 ```java
 @SpringBootApplication
 @EntityScan("edu.fontys.horecarobot.databaselibrary.models")
@@ -29,6 +29,10 @@ public class Application {
 
 }
 ```
+**Step 4. Adding a database to your project**
+
+To do this you can follow this guide: https://spring.io/guides/gs/accessing-data-mysql/
+But skipping the 'Create the @Entity Model' 'Create the Repository' steps as these are included in this library.
 
 # Example of how to use the models/repositories
 
