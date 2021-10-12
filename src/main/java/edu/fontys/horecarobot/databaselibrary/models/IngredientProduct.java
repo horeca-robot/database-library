@@ -29,8 +29,11 @@ public class IngredientProduct {
     private UUID id;
 
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    @JoinColumn(name = "ingredient_id")
+    @JoinColumn(name = "ingredient_id", insertable = false, updatable = false)
     private Ingredient ingredient;
+
+    @Column(nullable = false)
+    private String ingredient_id;
 
     @Column(nullable = false)
     private String product_id;
