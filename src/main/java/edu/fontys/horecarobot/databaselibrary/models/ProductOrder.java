@@ -1,5 +1,9 @@
 package edu.fontys.horecarobot.databaselibrary.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -8,6 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Entity
 @Table(name = "productOrders")
 public class ProductOrder {
@@ -42,34 +50,5 @@ public class ProductOrder {
             inverseJoinColumns = { @JoinColumn(table = "products", referencedColumnName = "id", name = "product_id") }
     )
     private List<Product> byProducts = new ArrayList<>();
-
-
-    public ProductOrder() {
-
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public boolean isDelivered() {
-        return delivered;
-    }
-
-    public void setDelivered(boolean delivered) {
-        this.delivered = delivered;
-    }
-
-    public boolean isDeliverLater() {
-        return deliverLater;
-    }
-
-    public void setDeliverLater(boolean deliverLater) {
-        this.deliverLater = deliverLater;
-    }
 
 }
