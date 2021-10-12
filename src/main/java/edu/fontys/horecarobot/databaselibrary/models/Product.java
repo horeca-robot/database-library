@@ -57,4 +57,8 @@ public class Product {
     )
     private List<Tag> tags = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private List<IngredientProduct> ingredients;
+
 }
