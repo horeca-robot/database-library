@@ -19,6 +19,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "product_order")
 public class ProductOrder {
+
     @Id
     @Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
     @GeneratedValue(generator = "UUID")
