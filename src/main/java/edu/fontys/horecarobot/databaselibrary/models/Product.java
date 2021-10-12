@@ -36,7 +36,7 @@ public class Product {
     @Column
     private String image;
 
-    @Column(nullable = true)
+    @Column
     private double price;
 
     @Column(name = "discount_price")
@@ -51,8 +51,8 @@ public class Product {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "products_tags",
-        joinColumns = { @JoinColumn(table = "tags", referencedColumnName = "id", name = "tag_id") },
-        inverseJoinColumns = { @JoinColumn(table = "products", referencedColumnName = "id", name = "product_id") }
+        joinColumns = { @JoinColumn(table = "tag", referencedColumnName = "id", name = "tag_id") },
+        inverseJoinColumns = { @JoinColumn(table = "product", referencedColumnName = "id", name = "product_id") }
     )
     private List<Tag> tags = new ArrayList<>();
 
