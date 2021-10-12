@@ -1,22 +1,54 @@
-# Example Main.java file for testing purposes
+# How to add this library to your project
+Step 1. Add the JitPack repository to your build file
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
+Step 2. Add the dependency
+```xml
+<dependency>
+    <groupId>com.github.horeca-robot</groupId>
+    <artifactId>database-library</artifactId>
+    <version>1.4</version>
+</dependency>
+```
+Step 3. Add Entity/Component scans to your project to make the models/repositories visible for Spring
+```java
+@SpringBootApplication
+@EntityScan("edu.fontys.horecarobot.databaselibrary.models")
+@ComponentScan("edu.fontys.horecarobot.databaselibrary.repositories")
+public class Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
+
+}
+```
+
+# Example of how to use the repositories
 
 ```java
-package edu.fontys.horecarobot.databaselibrary;
+import edu.fontys.horecarobot.databaselibrary.models.Order;
+import edu.fontys.horecarobot.databaselibrary.repositories.OrderRepository;
+import org.springframework.stereotype.Service;
 
-import edu.fontys.horecarobot.databaselibrary.models.Product;
-import org.hibernate.Session;
+@Service
+public class OrderService {
 
-public class Main {
-    public static void main(String[] args) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
+    private final OrderRepository orderRepository;
 
-        // Insert a new product into the databsae
-        Product product = new Product("Test", "image-b64", 62.32, 62.32, "Super cool description :D", true);
-        session.save(product);
-
-        session.getTransaction().commit();
-        HibernateUtil.shutdown();
+    public ExampleService(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
     }
+
+    public List<Order> getAllOrders() {
+        orderRepository.findAll();
+    }
+    
 }
 ```
