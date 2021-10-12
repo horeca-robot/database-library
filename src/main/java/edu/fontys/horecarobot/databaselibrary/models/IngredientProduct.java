@@ -29,7 +29,6 @@ public class IngredientProduct {
     private UUID id;
 
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    @OrderColumn(name = "id")
     @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
 

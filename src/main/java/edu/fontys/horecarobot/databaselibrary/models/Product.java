@@ -49,7 +49,6 @@ public class Product {
     private boolean containsAlcohol;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @OrderColumn(name = "id")
     @JoinTable(
         name = "products_tags",
         joinColumns = { @JoinColumn(table = "tags", referencedColumnName = "id", name = "tag_id") },

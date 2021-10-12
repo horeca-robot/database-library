@@ -38,7 +38,6 @@ public class Category {
     private String image;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @OrderColumn(name = "id")
     @JoinTable(
         name = "categories_categories",
         joinColumns = { @JoinColumn(table = "categories", referencedColumnName = "id", name = "parent_category_id") },
@@ -51,7 +50,6 @@ public class Category {
     private boolean visible;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @OrderColumn(name = "id")
     @JoinTable(
         name = "categories_product",
         joinColumns = { @JoinColumn(table = "products", referencedColumnName = "id", name = "product_id") },
