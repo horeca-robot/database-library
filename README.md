@@ -30,9 +30,10 @@ public class Application {
 }
 ```
 
-# Example of how to use the repositories
+# Example of how to use the models/repositories
 
 ```java
+import edu.fontys.horecarobot.databaselibrary.enums.PaymentStatus;
 import edu.fontys.horecarobot.databaselibrary.models.Order;
 import edu.fontys.horecarobot.databaselibrary.repositories.OrderRepository;
 import org.springframework.stereotype.Service;
@@ -49,6 +50,13 @@ public class OrderService {
     public List<Order> getAllOrders() {
         orderRepository.findAll();
     }
-    
+
+    public void createTestOrder() {
+        Order order = new Order();
+        order.setPaymentStatus(PaymentStatus.FAILED);
+        order.setSubTotal(100.65f);
+        orderRepository.saveAndFlush(order);
+    }
+
 }
 ```
