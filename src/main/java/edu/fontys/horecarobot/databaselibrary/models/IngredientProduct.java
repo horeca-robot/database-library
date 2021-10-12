@@ -15,7 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "orders")
+@Table(name = "ingredient_product")
 public class IngredientProduct {
     
     @Id
