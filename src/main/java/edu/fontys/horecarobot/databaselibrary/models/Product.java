@@ -36,7 +36,7 @@ public class Product {
     @Column
     private String image;
 
-    @Column
+    @Column(nullable = false)
     private double price;
 
     @Column(name = "discount_price")
