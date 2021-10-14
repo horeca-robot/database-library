@@ -31,7 +31,7 @@ public class Category {
     @Type(type = "uuid-char")
     private UUID id;
     
-    @Column
+    @Column(nullable = false)
     private String name;
     
     @Column
