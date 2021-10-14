@@ -17,7 +17,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "products")
+@Table(name = "product")
 public class Product {
 
     @Id
@@ -36,7 +36,7 @@ public class Product {
     @Column
     private String image;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private double price;
 
     @Column(name = "discount_price")
@@ -49,12 +49,15 @@ public class Product {
     private boolean containsAlcohol;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @OrderColumn(name = "id")
     @JoinTable(
         name = "products_tags",
-        joinColumns = { @JoinColumn(table = "tags", referencedColumnName = "id", name = "tag_id") },
-        inverseJoinColumns = { @JoinColumn(table = "products", referencedColumnName = "id", name = "product_id") }
+        joinColumns = { @JoinColumn(table = "tag", referencedColumnName = "id", name = "tag_id") },
+        inverseJoinColumns = { @JoinColumn(table = "product", referencedColumnName = "id", name = "product_id") }
     )
     private List<Tag> tags = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private List<IngredientProduct> ingredients;
 
 }

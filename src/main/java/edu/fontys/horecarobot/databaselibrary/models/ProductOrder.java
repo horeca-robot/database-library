@@ -17,8 +17,9 @@ import java.util.UUID;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "productOrders")
+@Table(name = "product_order")
 public class ProductOrder {
+
     @Id
     @Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
     @GeneratedValue(generator = "UUID")
@@ -45,9 +46,9 @@ public class ProductOrder {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "productsOrders_products_byProducts",
-            joinColumns = { @JoinColumn(table = "productOrders", referencedColumnName = "id", name = "productOrder_id") },
-            inverseJoinColumns = { @JoinColumn(table = "products", referencedColumnName = "id", name = "product_id") }
+            name = "product_order_product_by_product",
+            joinColumns = { @JoinColumn(table = "product_order", referencedColumnName = "id", name = "product_order_id") },
+            inverseJoinColumns = { @JoinColumn(table = "product", referencedColumnName = "id", name = "product_id") }
     )
     private List<Product> byProducts = new ArrayList<>();
 
