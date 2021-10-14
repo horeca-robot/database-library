@@ -20,7 +20,7 @@
 ```java
 @SpringBootApplication
 @EntityScan("edu.fontys.horecarobot.databaselibrary.models")
-@ComponentScan("edu.fontys.horecarobot.databaselibrary.repositories")
+@EnableJpaRepositories("edu.fontys.horecarobot.databaselibrary.repositories")
 public class Application {
 
 	public static void main(String[] args) {
