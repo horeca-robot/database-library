@@ -1,5 +1,9 @@
 package edu.fontys.horecarobot.databaselibrary.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -8,9 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Entity
-@Table(name = "productOrders")
+@Table(name = "product_order")
 public class ProductOrder {
+
     @Id
     @Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
     @GeneratedValue(generator = "UUID")
@@ -37,39 +46,10 @@ public class ProductOrder {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "productsOrders_products_byProducts",
-            joinColumns = { @JoinColumn(table = "productOrders", referencedColumnName = "id", name = "productOrder_id") },
-            inverseJoinColumns = { @JoinColumn(table = "products", referencedColumnName = "id", name = "product_id") }
+            name = "product_order_product_by_product",
+            joinColumns = { @JoinColumn(table = "product_order", referencedColumnName = "id", name = "product_order_id") },
+            inverseJoinColumns = { @JoinColumn(table = "product", referencedColumnName = "id", name = "product_id") }
     )
     private List<Product> byProducts = new ArrayList<>();
-
-
-    public ProductOrder() {
-
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public boolean isDelivered() {
-        return delivered;
-    }
-
-    public void setDelivered(boolean delivered) {
-        this.delivered = delivered;
-    }
-
-    public boolean isDeliverLater() {
-        return deliverLater;
-    }
-
-    public void setDeliverLater(boolean deliverLater) {
-        this.deliverLater = deliverLater;
-    }
 
 }

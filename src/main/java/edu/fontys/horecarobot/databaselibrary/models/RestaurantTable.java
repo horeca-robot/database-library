@@ -1,14 +1,23 @@
 package edu.fontys.horecarobot.databaselibrary.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.UUID;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Entity
-@Table(name = "tables")
+@Table(name = "table")
 public class RestaurantTable {
+
     @Id
     @Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
     @GeneratedValue(generator = "UUID")
@@ -28,41 +37,4 @@ public class RestaurantTable {
     @Column
     private int yAxis;
 
-    public RestaurantTable(int tableNumber, int x, int y) {
-        this.tableNumber = tableNumber;
-        this.xAxis = x;
-        this.yAxis = y;
-    }
-
-    public RestaurantTable() {
-
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public int getTableNumber() {
-        return tableNumber;
-    }
-
-    public void setTableNumber(int tableNumber) {
-        this.tableNumber = tableNumber;
-    }
-
-    public int getXAxis() {
-        return xAxis;
-    }
-
-    public void setXAxis(int x) {
-        this.xAxis = x;
-    }
-
-    public int getYAxis() {
-        return yAxis;
-    }
-
-    public void setYAxis(int y) {
-        this.yAxis = y;
-    }
 }

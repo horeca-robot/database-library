@@ -1,6 +1,5 @@
 package edu.fontys.horecarobot.databaselibrary.models;
 
-import edu.fontys.horecarobot.databaselibrary.enums.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,8 +8,6 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import javax.persistence.Table;
-import java.util.Date;
 import java.util.UUID;
 
 @Data
@@ -18,30 +15,23 @@ import java.util.UUID;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "order")
-public class Order {
+@Table(name = "admin")
+public class AdminUser {
 
     @Id
     @Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
+        name = "UUID",
+        strategy = "org.hibernate.id.UUIDGenerator"
     )
     @Type(type = "uuid-char")
     private UUID id;
 
-    @Column
-    private float subTotal;
+    @Column(nullable = false)
+    private String email;
 
-    @Column
-    private PaymentStatus paymentStatus;
-
-    @Column
-    private Date created_at;
-
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    @JoinColumn(name = "table_id")
-    private RestaurantTable table;
+    @Column(nullable = false)
+    private String password;
 
 }
