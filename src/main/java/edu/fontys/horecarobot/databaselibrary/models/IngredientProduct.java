@@ -28,7 +28,7 @@ public class IngredientProduct {
     @Type(type = "uuid-char")
     private UUID id;
 
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "ingredient_id", insertable = false, updatable = false)
     private Ingredient ingredient;
 
