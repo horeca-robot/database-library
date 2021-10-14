@@ -18,7 +18,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "categories")
+@Table(name = "category")
 public class Category {
     
     @Id
@@ -31,17 +31,16 @@ public class Category {
     @Type(type = "uuid-char")
     private UUID id;
     
-    @Column(nullable = true)
+    @Column(nullable = false)
     private String name;
     
     @Column
     private String image;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @OrderColumn(name = "id")
     @JoinTable(
         name = "categories_categories",
-        joinColumns = { @JoinColumn(table = "categories", referencedColumnName = "id", name = "parent_category_id") },
+        joinColumns = { @JoinColumn(table = "category", referencedColumnName = "id", name = "parent_category_id") },
         inverseJoinColumns = { @JoinColumn(table = "category", referencedColumnName = "id", name = "category_id") }
     )
     @Column(name = "parent_category")
@@ -51,10 +50,9 @@ public class Category {
     private boolean visible;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @OrderColumn(name = "id")
     @JoinTable(
         name = "categories_product",
-        joinColumns = { @JoinColumn(table = "products", referencedColumnName = "id", name = "product_id") },
+        joinColumns = { @JoinColumn(table = "product", referencedColumnName = "id", name = "product_id") },
         inverseJoinColumns = { @JoinColumn(table = "category", referencedColumnName = "id", name = "category_id") }
     )
     private List<Product> products = new ArrayList<>();
