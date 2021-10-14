@@ -18,8 +18,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "order")
-public class Order {
+@Table(name = "restaurant_order")
+public class RestaurantOrder {
 
     @Id
     @Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")

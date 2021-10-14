@@ -38,7 +38,7 @@ public class ProductOrder {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id", nullable = false)
-    private Order order;
+    private RestaurantOrder order;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id", nullable = false)
