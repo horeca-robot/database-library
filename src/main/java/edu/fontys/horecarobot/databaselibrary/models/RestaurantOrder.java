@@ -1,5 +1,6 @@
 package edu.fontys.horecarobot.databaselibrary.models;
 
+import edu.fontys.horecarobot.databaselibrary.enums.DeliveryStatus;
 import edu.fontys.horecarobot.databaselibrary.enums.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,6 +40,9 @@ public class RestaurantOrder {
 
     @Column
     private Date created_at;
+
+    @Column
+    private DeliveryStatus deliveryStatus;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "table_id")
