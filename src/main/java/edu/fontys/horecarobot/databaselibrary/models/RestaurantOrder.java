@@ -1,6 +1,5 @@
 package edu.fontys.horecarobot.databaselibrary.models;
 
-import edu.fontys.horecarobot.databaselibrary.enums.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,7 +36,7 @@ public class RestaurantOrder {
     private float subTotal;
 
     @Column
-    private PaymentStatus paymentStatus;
+    private boolean payed;
 
     @Column
     private Date created_at;
