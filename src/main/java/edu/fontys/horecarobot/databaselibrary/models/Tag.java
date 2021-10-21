@@ -9,8 +9,6 @@ import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -18,7 +16,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "tags")
+@Table(name = "tag")
 public class Tag {
     
     @Id
@@ -33,8 +31,5 @@ public class Tag {
 
     @Column(nullable = false)
     private String name;
-
-    @ManyToMany(mappedBy = "tags")
-    private List<Product> products = new ArrayList<>();
 
 }
