@@ -38,8 +38,8 @@ public class RestaurantOrder {
     @Column
     private boolean payed;
 
-    @Column
-    private Date created_at;
+    @Column(name = "created_at")
+    private Date createdAt;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "table_id")
