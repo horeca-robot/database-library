@@ -28,11 +28,11 @@ public class IngredientProduct {
     private UUID id;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    @JoinColumn(name = "product_id")
     private Product product;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "ingredient_id", referencedColumnName = "id")
+    @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
 
     @Column
