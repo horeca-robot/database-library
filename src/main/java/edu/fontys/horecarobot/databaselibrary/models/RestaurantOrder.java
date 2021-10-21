@@ -32,7 +32,7 @@ public class RestaurantOrder {
     @Type(type = "uuid-char")
     private UUID id;
 
-    @Column
+    @Column(name = "sub_total")
     private float subTotal;
 
     @Column
