@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import javax.persistence.*;
 
+import javax.persistence.*;
 import java.util.UUID;
 
 @Data
@@ -33,4 +33,5 @@ public class AdminUser {
 
     @Column(nullable = false)
     private String password;
+
 }

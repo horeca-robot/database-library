@@ -39,15 +39,15 @@ But skipping the 'Create the @Entity Model' 'Create the Repository' steps as the
 ```java
 import edu.fontys.horecarobot.databaselibrary.enums.PaymentStatus;
 import edu.fontys.horecarobot.databaselibrary.models.RestaurantOrder;
-import edu.fontys.horecarobot.databaselibrary.repositories.RestaurantOrderRepository;
+import edu.fontys.horecarobot.databaselibrary.repositories.OrderRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class OrderService {
 
-    private final RestaurantOrderRepository orderRepository;
+    private final OrderRepository orderRepository;
 
-    public ExampleService(RestaurantOrderRepository orderRepository) {
+    public ExampleService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
 

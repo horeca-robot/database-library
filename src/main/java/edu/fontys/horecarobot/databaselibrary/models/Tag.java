@@ -2,7 +2,6 @@ package edu.fontys.horecarobot.databaselibrary.models;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,7 +35,6 @@ public class Tag {
     private String name;
 
     @ManyToMany(mappedBy = "tags")
-    @JsonIgnoreProperties(value = "tags")
     private List<Product> products = new ArrayList<>();
 
 }
