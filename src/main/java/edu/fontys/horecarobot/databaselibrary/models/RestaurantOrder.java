@@ -10,7 +10,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -44,4 +46,6 @@ public class RestaurantOrder {
     @JoinColumn(name = "table_id")
     private RestaurantTable table;
 
+    @OneToMany(mappedBy = "order")
+    private List<ProductOrder> productOrders = new ArrayList<>();
 }
