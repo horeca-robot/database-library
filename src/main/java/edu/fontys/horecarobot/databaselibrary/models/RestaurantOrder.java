@@ -1,6 +1,5 @@
 package edu.fontys.horecarobot.databaselibrary.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import edu.fontys.horecarobot.databaselibrary.enums.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
