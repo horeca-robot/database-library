@@ -1,6 +1,5 @@
 package edu.fontys.horecarobot.databaselibrary.models;
 
-import edu.fontys.horecarobot.databaselibrary.enums.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -31,17 +32,19 @@ public class RestaurantOrder {
     @Type(type = "uuid-char")
     private UUID id;
 
-    @Column
-    private float subTotal;
+    @Column(name = "sub_total")
+    private double subTotal;
 
     @Column
-    private PaymentStatus paymentStatus;
+    private boolean payed;
 
-    @Column
-    private Date created_at;
+    @Column(name = "created_at")
+    private Date createdAt;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "table_id")
     private RestaurantTable table;
 
+    @OneToMany(mappedBy = "order")
+    private List<ProductOrder> productOrders = new ArrayList<>();
 }

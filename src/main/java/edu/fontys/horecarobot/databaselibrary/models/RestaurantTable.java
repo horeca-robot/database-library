@@ -28,13 +28,13 @@ public class RestaurantTable {
     @Type(type = "uuid-char")
     private UUID id;
 
-    @Column
+    @Column(name = "table_number", unique = true)
     private int tableNumber;
 
-    @Column
+    @Column(name = "x_axis")
     private int xAxis;
 
-    @Column
+    @Column(name = "y_axis")
     private int yAxis;
 
 }
