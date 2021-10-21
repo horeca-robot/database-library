@@ -17,7 +17,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "ingredient_product")
 public class IngredientProduct {
-    
     @Id
     @Column(updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
     @GeneratedValue(generator = "UUID")
@@ -29,14 +28,12 @@ public class IngredientProduct {
     private UUID id;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "ingredient_id", insertable = false, updatable = false)
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
-
-    @Column(nullable = false)
-    private String ingredient_id;
-
-    @Column(nullable = false)
-    private String product_id;
 
     @Column
     private boolean required;
