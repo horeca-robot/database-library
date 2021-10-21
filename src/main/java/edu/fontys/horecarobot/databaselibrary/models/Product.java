@@ -1,5 +1,6 @@
 package edu.fontys.horecarobot.databaselibrary.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -54,6 +55,7 @@ public class Product {
         joinColumns = { @JoinColumn(table = "tag", referencedColumnName = "id", name = "tag_id") },
         inverseJoinColumns = { @JoinColumn(table = "product", referencedColumnName = "id", name = "product_id") }
     )
+    @JsonIgnoreProperties(value = "products")
     private List<Tag> tags = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)

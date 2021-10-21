@@ -1,5 +1,7 @@
 package edu.fontys.horecarobot.databaselibrary.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import edu.fontys.horecarobot.databaselibrary.enums.DeliveryStatus;
 import edu.fontys.horecarobot.databaselibrary.enums.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +12,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -40,7 +44,14 @@ public class RestaurantOrder {
     @Column
     private Date created_at;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @Column
+    private DeliveryStatus deliveryStatus;
+
+    @OneToMany(mappedBy = "order")
+    @JsonIgnoreProperties(value = "order")
+    private List<ProductOrder> productOrders = new ArrayList<>();
+
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "table_id")
     private RestaurantTable table;
 
