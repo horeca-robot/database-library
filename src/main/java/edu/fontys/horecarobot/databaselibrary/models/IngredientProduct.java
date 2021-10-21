@@ -35,7 +35,7 @@ public class IngredientProduct {
     @JoinColumn(name = "ingredient_id", referencedColumnName = "id")
     private Ingredient ingredient;
 
-    @Column(name = "required")
+    @Column()
     private boolean required;
 
 }
