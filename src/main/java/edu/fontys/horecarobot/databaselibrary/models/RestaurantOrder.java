@@ -33,7 +33,7 @@ public class RestaurantOrder {
     private UUID id;
 
     @Column(name = "sub_total")
-    private float subTotal;
+    private double subTotal;
 
     @Column
     private boolean payed;
