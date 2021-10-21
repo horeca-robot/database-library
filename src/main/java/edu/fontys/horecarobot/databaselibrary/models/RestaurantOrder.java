@@ -48,6 +48,5 @@ public class RestaurantOrder {
     private RestaurantTable table;
 
     @OneToMany(mappedBy = "order")
-    @JsonIgnoreProperties(value = "order")
     private List<ProductOrder> productOrders = new ArrayList<>();
 }
