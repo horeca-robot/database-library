@@ -1,5 +1,6 @@
 package edu.fontys.horecarobot.databaselibrary.models;
 
+import edu.fontys.horecarobot.databaselibrary.enums.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,11 +31,8 @@ public class ProductOrder {
     @Type(type = "uuid-char")
     private UUID id;
 
-    @Column
-    private boolean delivered;
-
-    @Column
-    private boolean deliverLater;
+    @Column(name = "order_status")
+    private OrderStatus orderStatus;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id", nullable = false)
