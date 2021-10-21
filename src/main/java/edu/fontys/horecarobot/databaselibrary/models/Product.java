@@ -50,7 +50,7 @@ public class Product {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-        name = "products_tags",
+        name = "product_tag",
         joinColumns = { @JoinColumn(table = "tag", referencedColumnName = "id", name = "tag_id") },
         inverseJoinColumns = { @JoinColumn(table = "product", referencedColumnName = "id", name = "product_id") }
     )

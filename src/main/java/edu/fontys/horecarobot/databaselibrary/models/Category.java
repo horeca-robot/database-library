@@ -39,11 +39,10 @@ public class Category {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-        name = "categories_categories",
+        name = "parent_category",
         joinColumns = { @JoinColumn(table = "category", referencedColumnName = "id", name = "parent_category_id") },
         inverseJoinColumns = { @JoinColumn(table = "category", referencedColumnName = "id", name = "category_id") }
     )
-    @Column(name = "parent_category")
     private List<Category> parentCategory = new ArrayList<>();
     
     @Column
@@ -51,7 +50,7 @@ public class Category {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-        name = "categories_product",
+        name = "category_product",
         joinColumns = { @JoinColumn(table = "product", referencedColumnName = "id", name = "product_id") },
         inverseJoinColumns = { @JoinColumn(table = "category", referencedColumnName = "id", name = "category_id") }
     )
