@@ -34,7 +34,7 @@ public class RestaurantOrder {
     private UUID id;
 
     @Column
-    private float subTotal;
+    private double subTotal;
 
     @Column
     private PaymentStatus paymentStatus;
