@@ -35,6 +35,7 @@ public class RestaurantInfo {
     @Column(name = "restaurant_logo")
     private String restaurantLogo;
 
+    @Lob
     @Column(name = "background_image")
     private String backgroundImage;
 
