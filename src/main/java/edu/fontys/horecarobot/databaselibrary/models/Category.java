@@ -33,17 +33,26 @@ public class Category {
     
     @Column(nullable = false)
     private String name;
-    
+
+    @Lob
     @Column
     private String image;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
-        name = "parent_category",
-        joinColumns = { @JoinColumn(table = "category", referencedColumnName = "id", name = "parent_category_id") },
-        inverseJoinColumns = { @JoinColumn(table = "category", referencedColumnName = "id", name = "category_id") }
+        name = "category_relations",
+        joinColumns = { @JoinColumn(name = "child_category_id", nullable = false) },
+        inverseJoinColumns = { @JoinColumn(name = "parent_category_id", nullable = false) }
     )
-    private List<Category> parentCategory = new ArrayList<>();
+    private List<Category> parentCategories = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(
+        name = "category_relations",
+        joinColumns = { @JoinColumn(name = "parent_category_id", nullable = false) },
+        inverseJoinColumns = { @JoinColumn(name = "child_category_id", nullable = false) }
+    )
+    private List<Category> childCategories = new ArrayList<>();
     
     @Column
     private boolean visible;
@@ -51,8 +60,8 @@ public class Category {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "category_product",
-        joinColumns = { @JoinColumn(table = "product", referencedColumnName = "id", name = "product_id") },
-        inverseJoinColumns = { @JoinColumn(table = "category", referencedColumnName = "id", name = "category_id") }
+        joinColumns = { @JoinColumn(table = "category", referencedColumnName = "id", name = "category_id") },
+        inverseJoinColumns = { @JoinColumn(table = "product", referencedColumnName = "id", name = "product_id") }
     )
     private List<Product> products = new ArrayList<>();
 
