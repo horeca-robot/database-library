@@ -60,8 +60,8 @@ public class Category {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "category_product",
-        joinColumns = { @JoinColumn(table = "product", referencedColumnName = "id", name = "product_id") },
-        inverseJoinColumns = { @JoinColumn(table = "category", referencedColumnName = "id", name = "category_id") }
+        joinColumns = { @JoinColumn(table = "category", referencedColumnName = "id", name = "category_id") },
+        inverseJoinColumns = { @JoinColumn(table = "product", referencedColumnName = "id", name = "product_id") }
     )
     private List<Product> products = new ArrayList<>();
 
