@@ -61,4 +61,7 @@ public class Product {
     @JoinColumn(name = "product_id")
     private List<IngredientProduct> ingredients;
 
+    @ManyToMany(mappedBy = "products")
+    private List<Category> categories = new ArrayList<>();
+
 }
