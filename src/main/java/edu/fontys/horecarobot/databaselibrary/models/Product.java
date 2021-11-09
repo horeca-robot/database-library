@@ -61,7 +61,12 @@ public class Product {
     @JoinColumn(name = "product_id")
     private List<IngredientProduct> ingredients;
 
-    @ManyToMany(mappedBy = "products")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "category_product",
+            joinColumns = { @JoinColumn(name = "product_id") },
+            inverseJoinColumns = { @JoinColumn(name = "category_id") }
+    )
     private List<Category> categories = new ArrayList<>();
 
 }

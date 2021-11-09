@@ -57,12 +57,10 @@ public class Category {
     @Column
     private boolean visible;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-        name = "category_product",
-        joinColumns = { @JoinColumn(table = "category", referencedColumnName = "id", name = "category_id") },
-        inverseJoinColumns = { @JoinColumn(table = "product", referencedColumnName = "id", name = "product_id") }
-    )
+    /**
+     * For adding products to categories, you need to add the category to every product individually.
+     */
+    @ManyToMany(mappedBy = "categories")
     private List<Product> products = new ArrayList<>();
 
 }
