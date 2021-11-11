@@ -34,15 +34,11 @@ public class ProductOrder {
     @Column(name = "order_status")
     private OrderStatus orderStatus;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
-    private RestaurantOrder order;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
+    @ManyToOne(cascade = CascadeType.MERGE, optional = false)
+    @JoinColumn(name = "product_order_id", nullable = false)
     private Product product;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "product_order_product_by_product",
             joinColumns = { @JoinColumn(table = "product_order", referencedColumnName = "id", name = "product_order_id") },
