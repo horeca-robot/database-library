@@ -49,7 +49,7 @@ public class Product {
     @Column(name = "contains_alcohol")
     private boolean containsAlcohol;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
         name = "product_tag",
         joinColumns = { @JoinColumn(table = "tag", referencedColumnName = "id", name = "tag_id") },
@@ -57,11 +57,11 @@ public class Product {
     )
     private List<Tag> tags = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     @JoinColumn(name = "product_id")
     private List<IngredientProduct> ingredients;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
             name = "category_product",
             joinColumns = { @JoinColumn(name = "product_id") },
