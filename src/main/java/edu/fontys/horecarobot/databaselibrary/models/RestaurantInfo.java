@@ -32,6 +32,7 @@ public class RestaurantInfo {
     @Column(nullable = false)
     private String name;
 
+    @Lob
     @Column(name = "restaurant_logo")
     private String restaurantLogo;
 
