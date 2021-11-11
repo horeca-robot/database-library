@@ -42,6 +42,9 @@ public class ProductOrder {
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
+    @Column
+    private Integer amount;
+
     @ManyToMany
     @JoinTable(
             name = "product_order_product_by_product",
