@@ -34,7 +34,7 @@ public class ProductOrder {
     @Column(name = "order_status")
     private OrderStatus orderStatus;
 
-    @ManyToOne(cascade = CascadeType.MERGE, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "product_order_id", nullable = false)
     private Product product;
 
