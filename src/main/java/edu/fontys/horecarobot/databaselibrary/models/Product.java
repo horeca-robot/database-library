@@ -49,7 +49,7 @@ public class Product {
     @Column(name = "contains_alcohol")
     private boolean containsAlcohol;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
         name = "product_tag",
         joinColumns = { @JoinColumn(table = "tag", referencedColumnName = "id", name = "tag_id") },
