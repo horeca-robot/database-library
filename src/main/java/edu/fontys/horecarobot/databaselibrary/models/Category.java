@@ -60,7 +60,7 @@ public class Category {
     /**
      * For adding products to categories, you need to add the category to every product individually.
      */
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Product> products = new ArrayList<>();
 
 }
