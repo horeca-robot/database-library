@@ -41,7 +41,7 @@ public class RestaurantOrder {
     @Column(name = "created_at")
     private Date createdAt;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "table_id")
     private RestaurantTable table;
 
