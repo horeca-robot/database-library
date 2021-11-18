@@ -61,6 +61,11 @@ public class Category {
      * For adding products to categories, you need to add the category to every product individually.
      */
     @ManyToMany(mappedBy = "categories")
+    @JoinTable(
+            name = "category_product",
+            joinColumns = { @JoinColumn(name = "product_id") },
+            inverseJoinColumns = { @JoinColumn(name = "category_id") }
+    )
     private List<Product> products = new ArrayList<>();
 
 }
