@@ -48,4 +48,8 @@ public class RestaurantOrder {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_order_id")
     private List<ProductOrder> productOrders = new ArrayList<>();
+
+    public RestaurantOrder() {
+        this.createdAt = new Date();
+    }
 }
