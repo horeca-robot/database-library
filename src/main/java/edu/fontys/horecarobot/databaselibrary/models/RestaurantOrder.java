@@ -1,5 +1,6 @@
 package edu.fontys.horecarobot.databaselibrary.models;
 
+import edu.fontys.horecarobot.databaselibrary.enums.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -48,4 +49,11 @@ public class RestaurantOrder {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_order_id")
     private List<ProductOrder> productOrders = new ArrayList<>();
+
+    @Transient
+    private boolean orderDone;
+
+    public boolean isOrderDone() {
+        return productOrders.stream().anyMatch(order -> order.getOrderStatus() == OrderStatus.DELIVERED);
+    }
 }
