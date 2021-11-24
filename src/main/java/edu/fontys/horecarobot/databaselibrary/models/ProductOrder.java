@@ -34,12 +34,8 @@ public class ProductOrder {
     @Column(name = "order_status")
     private OrderStatus orderStatus;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_id", nullable = false)
-    private RestaurantOrder order;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "product_id", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "product_order_id", nullable = false)
     private Product product;
 
     @ManyToMany(cascade = CascadeType.ALL)
