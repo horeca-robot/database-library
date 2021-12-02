@@ -61,4 +61,28 @@ public class RestaurantInfo {
     @Column(name = "contact_person_phone")
     private String contactPersonPhone;
 
+    @Column
+    private String address;
+
+    @Column
+    private String province;
+
+    @Column
+    private String municipality;
+
+    @Column(name = "postal_code")
+    private String postalCode;
+
+    @Column
+    private String country;
+
+    @Column(name = "account_number")
+    private String accountNumber;
+
+    @Column(name = "kvk_number")
+    private String kvkNumber;
+
+    @Column(name = "tax_number")
+    private String taxNumber;
+
 }
