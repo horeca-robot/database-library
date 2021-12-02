@@ -57,8 +57,7 @@ public class Product {
     )
     private List<Tag> tags = new ArrayList<>();
 
-    @OneToMany
-    //@JoinColumn(name = "product_id")
+    @OneToMany(mappedBy = "product")
     private List<IngredientProduct> ingredients;
 
     @ManyToMany
