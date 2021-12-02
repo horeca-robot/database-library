@@ -9,6 +9,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -46,11 +47,9 @@ public class RestaurantInfo {
     @Column(name = "secondary_color")
     private String secondaryColor;
 
-    @Column(name = "opening_time")
-    private LocalTime openingTime;
-
-    @Column(name = "closing_time")
-    private LocalTime closingTime;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "restaurant_id")
+    private List<OpeningPeriod> openingTimes;
 
     @Column(name = "contact_person_name")
     private String contactPersonName;
