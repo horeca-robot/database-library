@@ -54,6 +54,6 @@ public class RestaurantOrder {
     private boolean orderDone;
 
     public boolean isOrderDone() {
-        return productOrders.stream().anyMatch(order -> order.getOrderStatus() == OrderStatus.DELIVERED);
+        return  productOrders.stream().allMatch(order -> order.getOrderStatus() == OrderStatus.DELIVERED);
     }
 }
