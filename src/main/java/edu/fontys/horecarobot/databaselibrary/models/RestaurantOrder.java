@@ -39,7 +39,7 @@ public class RestaurantOrder {
     private boolean paid;
 
     @Column(name = "created_at")
-    private Date createdAt;
+    private Date createdAt = new Date();
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "table_id")
