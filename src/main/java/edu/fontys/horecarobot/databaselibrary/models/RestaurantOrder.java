@@ -4,6 +4,7 @@ import edu.fontys.horecarobot.databaselibrary.enums.OrderStatus;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import org.hibernate.criterion.Order;
 
 import javax.persistence.*;
 import javax.persistence.Table;
@@ -47,11 +48,17 @@ public class RestaurantOrder {
     @JoinColumn(name = "restaurant_order_id")
     private List<ProductOrder> productOrders = new ArrayList<>();
 
-    @Transient
+
+
+    @Column
     @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     private boolean OrderDone;
 
     public boolean isOrderDone() {
         return productOrders.stream().allMatch(order -> order.getOrderStatus() == OrderStatus.DELIVERED);
+    }
+    public void setOrderDone() {
+        OrderDone = productOrders.stream().allMatch(order -> order.getOrderStatus() == OrderStatus.DELIVERED);
     }
 }
