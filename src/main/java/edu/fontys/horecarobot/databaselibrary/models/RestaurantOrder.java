@@ -48,7 +48,7 @@ public class RestaurantOrder {
     private List<ProductOrder> productOrders = new ArrayList<>();
 
     @Transient
-    @Getter
+    @Getter(AccessLevel.NONE)
     private boolean orderDone;
 
     public boolean isOrderDone() {
