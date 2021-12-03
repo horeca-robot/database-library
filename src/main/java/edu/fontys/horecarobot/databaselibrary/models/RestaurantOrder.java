@@ -49,7 +49,7 @@ public class RestaurantOrder {
 
     @Transient
     @Getter(AccessLevel.NONE)
-    private boolean orderDone;
+    private boolean OrderDone;
 
     public boolean isOrderDone() {
         return productOrders.stream().allMatch(order -> order.getOrderStatus() == OrderStatus.DELIVERED);
