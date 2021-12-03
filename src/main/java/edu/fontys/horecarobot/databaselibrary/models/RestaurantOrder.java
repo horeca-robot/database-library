@@ -1,10 +1,7 @@
 package edu.fontys.horecarobot.databaselibrary.models;
 
 import edu.fontys.horecarobot.databaselibrary.enums.OrderStatus;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -51,9 +48,10 @@ public class RestaurantOrder {
     private List<ProductOrder> productOrders = new ArrayList<>();
 
     @Transient
+    @Getter
     private boolean orderDone;
 
     public boolean isOrderDone() {
-        return  productOrders.stream().allMatch(order -> order.getOrderStatus() == OrderStatus.DELIVERED);
+        return productOrders.stream().allMatch(order -> order.getOrderStatus() == OrderStatus.DELIVERED);
     }
 }
