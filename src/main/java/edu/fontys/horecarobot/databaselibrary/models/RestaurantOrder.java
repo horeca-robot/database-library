@@ -53,12 +53,12 @@ public class RestaurantOrder {
     @Column
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
-    private boolean OrderDone;
+    private boolean orderDone;
 
     public boolean isOrderDone() {
         return productOrders.stream().allMatch(order -> order.getOrderStatus() == OrderStatus.DELIVERED);
     }
     public void setOrderDone() {
-        OrderDone = productOrders.stream().allMatch(order -> order.getOrderStatus() == OrderStatus.DELIVERED);
+        orderDone = productOrders.stream().allMatch(order -> order.getOrderStatus() == OrderStatus.DELIVERED);
     }
 }
