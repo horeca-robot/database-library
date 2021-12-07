@@ -41,6 +41,9 @@ public class RestaurantOrder {
     @Column(name = "created_at")
     private Date createdAt = new Date();
 
+    @Column
+    private String note;
+
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "table_id")
     private RestaurantTable table;
