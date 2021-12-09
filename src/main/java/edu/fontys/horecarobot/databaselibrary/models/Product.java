@@ -49,6 +49,9 @@ public class Product {
     @Column(name = "contains_alcohol")
     private boolean containsAlcohol;
 
+    @Column(name = "can_be_served_as_by_product")
+    private boolean canBeServedAsByProduct;
+
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
         name = "product_tag",
@@ -67,5 +70,13 @@ public class Product {
             inverseJoinColumns = { @JoinColumn(name = "category_id") }
     )
     private List<Category> categories = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "by_products",
+            joinColumns = { @JoinColumn(name = "product_id", nullable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "by_product_id", nullable = false) }
+    )
+    private List<Product> byProducts = new ArrayList<>();
 
 }
