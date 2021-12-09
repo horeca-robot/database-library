@@ -57,7 +57,8 @@ public class Product {
     )
     private List<Tag> tags = new ArrayList<>();
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "product_id")
     private List<IngredientProduct> ingredients;
 
     @ManyToMany
