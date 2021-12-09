@@ -55,7 +55,7 @@ public class Category {
     private List<Category> childCategories = new ArrayList<>();
     
     @Column
-    private boolean visible;
+    private boolean visible = true;
 
     /**
      * For adding products to categories, you need to add the category to every product individually.

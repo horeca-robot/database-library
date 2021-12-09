@@ -47,10 +47,10 @@ public class Product {
     private String description;
 
     @Column(name = "contains_alcohol")
-    private boolean containsAlcohol;
+    private boolean containsAlcohol = false;
 
     @Column(name = "can_be_served_as_by_product")
-    private boolean canBeServedAsByProduct;
+    private boolean canBeServedAsByProduct = false;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
