@@ -9,12 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import javax.persistence.EntityManager;
+
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 public class ByProductTests {
 
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private EntityManager entityManager;
 
     private Product product;
 
@@ -24,6 +28,7 @@ public class ByProductTests {
         p.setName("Test Product");
         p.setPrice(12);
         product = productRepository.saveAndFlush(p);
+        entityManager.clear();
     }
 
     @Test
@@ -39,8 +44,11 @@ public class ByProductTests {
         byProduct.setCanBeServedAsByProduct(true);
 
         byProduct = productRepository.saveAndFlush(byProduct);
+        entityManager.clear();
+
         product.setByProducts(TestUtils.asList(byProduct));
         productRepository.saveAndFlush(product);
+        entityManager.clear();
 
         Assertions.assertEquals(2, productRepository.count());
         Assertions.assertEquals(1, productRepository.getById(product.getId()).getByProducts().size());
