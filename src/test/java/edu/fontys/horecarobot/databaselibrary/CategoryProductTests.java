@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 
 @ExtendWith(SpringExtension.class)
@@ -21,6 +22,8 @@ public class CategoryProductTests {
     private CategoryRepository categoryRepository;
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private EntityManager entityManager;
 
     private Category category;
     private Product product;
@@ -68,9 +71,11 @@ public class CategoryProductTests {
         product.setCategories(TestUtils.asList(category));
 
         productRepository.saveAndFlush(product);
+        entityManager.clear();
 
         Assertions.assertEquals(1, categoryRepository.findAll().size());
         Assertions.assertEquals(1, productRepository.findAll().size());
+        Assertions.assertEquals(1, categoryRepository.findAll().get(0).getProducts().size());
         Assertions.assertEquals(1, productRepository.findAll().get(0).getCategories().size());
     }
 
@@ -81,6 +86,7 @@ public class CategoryProductTests {
         var category = categoryRepository.findAll().get(0);
         categoryRepository.delete(category);
         categoryRepository.flush();
+        entityManager.clear();
 
         Assertions.assertEquals(1, productRepository.count());
         Assertions.assertEquals(0, categoryRepository.count());
@@ -93,6 +99,7 @@ public class CategoryProductTests {
         var product = productRepository.findAll().get(0);
         productRepository.delete(product);
         productRepository.flush();
+        entityManager.clear();
 
         Assertions.assertEquals(1, categoryRepository.count());
         Assertions.assertEquals(0, productRepository.count());
