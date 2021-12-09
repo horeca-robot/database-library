@@ -49,7 +49,10 @@ public class Product {
     @Column(name = "contains_alcohol")
     private boolean containsAlcohol;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @Column(name = "can_be_served_as_by_product")
+    private boolean canBeServedAsByProduct;
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
         name = "product_tag",
         joinColumns = { @JoinColumn(table = "tag", referencedColumnName = "id", name = "tag_id") },
@@ -57,11 +60,24 @@ public class Product {
     )
     private List<Tag> tags = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "product_id")
     private List<IngredientProduct> ingredients;
 
-    @ManyToMany(mappedBy = "products")
+    @ManyToMany
+    @JoinTable(
+            name = "category_product",
+            joinColumns = { @JoinColumn(name = "product_id") },
+            inverseJoinColumns = { @JoinColumn(name = "category_id") }
+    )
     private List<Category> categories = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "by_products",
+            joinColumns = { @JoinColumn(name = "product_id", nullable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "by_product_id", nullable = false) }
+    )
+    private List<Product> byProducts = new ArrayList<>();
 
 }

@@ -57,11 +57,11 @@ public class Category {
     @Column
     private boolean visible;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
-        name = "category_product",
-        joinColumns = { @JoinColumn(table = "category", referencedColumnName = "id", name = "category_id") },
-        inverseJoinColumns = { @JoinColumn(table = "product", referencedColumnName = "id", name = "product_id") }
+            name = "category_product",
+            joinColumns = { @JoinColumn(name = "category_id") },
+            inverseJoinColumns = { @JoinColumn(name = "product_id") }
     )
     private List<Product> products = new ArrayList<>();
 
