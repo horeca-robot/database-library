@@ -4,6 +4,7 @@ import edu.fontys.horecarobot.databaselibrary.models.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -12,5 +13,5 @@ import java.util.UUID;
  */
 @Repository
 public interface ProductRepository extends JpaRepository<Product, UUID> {
-    Product getProductByName(String name);
+    Optional<Product> findOneByName(String name);
 }
