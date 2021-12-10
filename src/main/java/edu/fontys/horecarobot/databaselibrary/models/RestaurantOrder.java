@@ -51,8 +51,6 @@ public class RestaurantOrder {
     @JoinColumn(name = "restaurant_order_id")
     private List<ProductOrder> productOrders = new ArrayList<>();
 
-
-
     @Column
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
