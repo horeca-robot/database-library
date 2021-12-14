@@ -36,7 +36,7 @@ public class RestaurantOrder {
     private double subTotal;
 
     @Column
-    private boolean paid;
+    private boolean paid = false;
 
     @Column(name = "created_at")
     private Date createdAt = new Date();
