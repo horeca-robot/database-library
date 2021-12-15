@@ -53,13 +53,9 @@ public class RestaurantOrder {
 
     @Column
     @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
     private boolean orderDone = false;
 
     public boolean isOrderDone() {
         return productOrders.stream().allMatch(order -> order.getOrderStatus() == OrderStatus.DELIVERED);
-    }
-    public void setOrderDone() {
-        orderDone = productOrders.stream().allMatch(order -> order.getOrderStatus() == OrderStatus.DELIVERED);
     }
 }
