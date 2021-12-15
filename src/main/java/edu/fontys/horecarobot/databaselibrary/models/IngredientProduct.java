@@ -36,6 +36,6 @@ public class IngredientProduct {
     private Ingredient ingredient;
 
     @Column
-    private boolean required;
+    private boolean required = false;
 
 }

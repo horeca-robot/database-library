@@ -30,27 +30,12 @@ public class CategoryProductTests {
 
     @BeforeEach
     public void setup() {
-        Category c = new Category(
-                null,
-                "Test Category",
-                null,
-                new ArrayList<>(),
-                new ArrayList<>(),
-                true,
-                new ArrayList<>()
-        );
-        Product p = new Product(
-                null,
-                "Test Product",
-                null,
-                12,
-                12,
-                "Test description",
-                false,
-                new ArrayList<>(),
-                new ArrayList<>(),
-                new ArrayList<>()
-        );
+        Category c = new Category();
+        c.setName("Test Category");
+
+        Product p = new Product();
+        p.setName("Test Product");
+        p.setPrice(12);
 
         category = categoryRepository.saveAndFlush(c);
         product = productRepository.saveAndFlush(p);

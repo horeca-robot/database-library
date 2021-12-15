@@ -46,7 +46,7 @@ public class ProductIngredientTests {
     }
 
     @Test
-    public void add_ingredient_to_product() {
+    public void add_ingredient_to_new_product() {
         var product = new Product();
         product.setName("Test Product");
         product.setPrice(12);
@@ -59,6 +59,27 @@ public class ProductIngredientTests {
         Assertions.assertTrue(optional.isPresent());
         Assertions.assertEquals(1, optional.get().getIngredients().size());
         Assertions.assertNotNull(optional.get().getIngredients().get(0).getIngredient());
+        Assertions.assertEquals("Test Ingredient", optional.get().getIngredients().get(0).getIngredient().getName());
+    }
+
+    @Test
+    public void add_ingredient_to_existing_product() {
+        var product = new Product();
+        product.setName("Test Product");
+        product.setPrice(12);
+
+        product = productRepository.saveAndFlush(product);
+
+        product.setIngredients(TestUtils.asList(new IngredientProduct(null, product, testIngredient, true)));
+
+        productRepository.saveAndFlush(product);
+        entityManager.clear();
+
+        var optional = productRepository.findOneByName("Test Product");
+        Assertions.assertTrue(optional.isPresent());
+        Assertions.assertEquals(1, optional.get().getIngredients().size());
+        Assertions.assertNotNull(optional.get().getIngredients().get(0).getIngredient());
+        Assertions.assertNotNull(optional.get().getIngredients().get(0).getIngredient().getId());
         Assertions.assertEquals("Test Ingredient", optional.get().getIngredients().get(0).getIngredient().getName());
     }
 
