@@ -51,11 +51,4 @@ public class RestaurantOrder {
     @JoinColumn(name = "restaurant_order_id")
     private List<ProductOrder> productOrders = new ArrayList<>();
 
-    @Column
-    @Getter(AccessLevel.NONE)
-    private boolean orderDone = false;
-
-    public boolean isOrderDone() {
-        return productOrders.stream().allMatch(order -> order.getOrderStatus() == OrderStatus.DELIVERED);
-    }
 }
