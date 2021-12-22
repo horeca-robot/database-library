@@ -14,5 +14,5 @@ import java.util.UUID;
  */
 @Repository
 public interface RestaurantOrderRepository extends JpaRepository<RestaurantOrder, UUID> {
-    Page<RestaurantOrder> findByOrderDoneFalseOrderByCreatedAtDesc(Pageable pageable);
+    Page<RestaurantOrder> findByOrderByCreatedAtDescOrderDoneDesc(Pageable pageable);
 }

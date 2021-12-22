@@ -4,8 +4,6 @@ import edu.fontys.horecarobot.databaselibrary.enums.OrderStatus;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import org.hibernate.criterion.Order;
-
 import javax.persistence.*;
 import javax.persistence.Table;
 import java.util.ArrayList;
@@ -51,7 +49,7 @@ public class RestaurantOrder {
     @JoinColumn(name = "restaurant_order_id")
     private List<ProductOrder> productOrders = new ArrayList<>();
 
-    @Column
+    @Column(columnDefinition = "boolean default false")
     @Getter(AccessLevel.NONE)
     private boolean orderDone = false;
 
