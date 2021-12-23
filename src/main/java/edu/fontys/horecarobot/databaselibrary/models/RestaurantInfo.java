@@ -67,7 +67,7 @@ public class RestaurantInfo {
     private String province;
 
     @Column
-    private String municipality;
+    private String city;
 
     @Column(name = "postal_code")
     private String postalCode;
