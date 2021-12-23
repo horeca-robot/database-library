@@ -47,10 +47,10 @@ public class Product {
     private String description;
 
     @Column(name = "contains_alcohol")
-    private boolean containsAlcohol;
+    private boolean containsAlcohol = false;
 
     @Column(name = "can_be_served_as_by_product")
-    private boolean canBeServedAsByProduct;
+    private boolean canBeServedAsByProduct = false;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
@@ -60,7 +60,7 @@ public class Product {
     )
     private List<Tag> tags = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "product_id")
     private List<IngredientProduct> ingredients;
 

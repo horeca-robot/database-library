@@ -55,7 +55,7 @@ public class Category {
     private List<Category> childCategories = new ArrayList<>();
     
     @Column
-    private boolean visible;
+    private boolean visible = true;
 
     @ManyToMany
     @JoinTable(

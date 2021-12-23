@@ -47,7 +47,7 @@ public class RestaurantInfo {
     @Column(name = "secondary_color")
     private String secondaryColor;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "restaurant_id")
     private List<OpeningPeriod> openingTimes;
 
@@ -67,7 +67,7 @@ public class RestaurantInfo {
     private String province;
 
     @Column
-    private String municipality;
+    private String city;
 
     @Column(name = "postal_code")
     private String postalCode;
