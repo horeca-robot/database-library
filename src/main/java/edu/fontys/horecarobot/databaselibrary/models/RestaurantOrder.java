@@ -1,12 +1,9 @@
 package edu.fontys.horecarobot.databaselibrary.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import edu.fontys.horecarobot.databaselibrary.enums.OrderStatus;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import javax.persistence.Table;
 import java.util.ArrayList;
@@ -51,4 +48,12 @@ public class RestaurantOrder {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_order_id")
     private List<ProductOrder> productOrders = new ArrayList<>();
+
+    @Column(columnDefinition = "boolean default false")
+    @Getter(AccessLevel.NONE)
+    private boolean orderDone = false;
+
+    public boolean isOrderDone() {
+        return productOrders.stream().allMatch(order -> order.getOrderStatus() == OrderStatus.DELIVERED);
+    }
 }
